@@ -1,13 +1,26 @@
-html {
-	min-height: 100%;
-}
 
 body {
 	margin: 0px;
 	padding: 0px;
-	min-height: 600px;
+	background-color: #eee;
 }
 
-#visFrame {
+
+#vocabToolbar input {
+	position: absolute;
+	left: 24px; top: 24px; width: 120px; height: 36px;
+	
+}
+
+#vocabToolbar button {
+	position: absolute;
+	left: 142px; top: 24px; width: 64px; height: 36px;
+	
+}
+
+#vocabToolbar .breadcrumbs {
+	background-color: #fff;
+	position: absolute;
+	left: 210px; top: 24px; height: 36px;
 	
 }
