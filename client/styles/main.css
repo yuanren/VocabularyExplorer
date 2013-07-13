@@ -8,19 +8,34 @@ body {
 
 #vocabToolbar input {
 	position: absolute;
-	left: 24px; top: 24px; width: 120px; height: 36px;
+	left: 24px; top: 24px; width: 120px; height: 32px;
 	
 }
 
-#vocabToolbar button {
+#vocabToolbar #searchBtn {
 	position: absolute;
-	left: 142px; top: 24px; width: 64px; height: 36px;
-	
+	left: 142px; top: 24px; width: 64px; height: 32px;
+}
+
+#vocabToolbar #saveBtn {
+	position: absolute;
+	right: 24px; top: 25px; width: 96px; height: 32px;
 }
 
 #vocabToolbar .breadcrumbs {
 	background-color: #fff;
 	position: absolute;
-	left: 210px; top: 24px; height: 36px;
+	right: 124px; top: 24px; height: 33px;
 	
+}
+
+#userLists {
+	position: absolute;
+	right: 24px; top: 64px; width: 160px;
+}
+
+#userLists ul { padding: 0; }
+
+#userLists ul li {
+	padding: 0.6em;
 }

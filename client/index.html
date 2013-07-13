@@ -1,5 +1,5 @@
 
-<html ng-app>
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="styles/kylescholz.css">
 		<link rel="stylesheet" href="styles/main.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>-->
         <script src="scripts/libs/foundation.min.js"></script>
@@ -21,7 +21,7 @@
         <script src="scripts/libs/kylescholz/domui.js"></script>
         <script src="scripts/libs/kylescholz/control.js"></script>
         <!--<script src="scripts/libs/kylescholz/ajax.js"></script>-->
-        <script src="scripts/angularView.js"></script>
+        <!--<script src="scripts/angularView.js"></script>-->
         
 
     </head>
@@ -38,12 +38,24 @@
 		  </table>
 		</div>
 
-		<div ng-controller="vocabCtrl" ng-view>
+		<div>
 			<div id="vocabToolbar">
-				<input type="text" ng-model="currentVocab" placeholder="Input Vocabuary">
-				<button class="button small secondary" ng-click="addVocab()"> Go! </button>
+				<input type="text" placeholder="Input Vocabuary">
+				<button id="searchBtn" class="button small secondary"> Go! </button>
 				<ul class="breadcrumbs">
-					<li ng-repeat="vocab in vocabList"><a href="#">{{vocab}}</a></li>
+					<li><a href="#">test</a></li>
+					<li><a href="#">test2</a></li>
+				</ul>
+				<button id="saveBtn" class="button small secondary"> Save List </button>
+			</div>
+
+			<div id="userLists">
+				<ul class="pricing-table">
+				  	<li class="title">My Lists</li>
+					<!-- <li class="price">$99.99</li> -->
+					<li class="bullet-item">List 1 <a href="#">x</a></li>
+					<li class="bullet-item">List 2 <a href="#">x</a></li>
+					<li class="bullet-item">List 3 <a href="#">x</a></li>
 				</ul>
 			</div>
 		</div>
