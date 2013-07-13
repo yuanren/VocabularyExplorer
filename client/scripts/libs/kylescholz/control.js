@@ -1,11 +1,11 @@
 //
-// This work is licensed under the Creative Commons Attribution 2.5 License. To 
+// This work is licensed under the Creative Commons Attribution 2.5 License. To
 // view a copy of this license, visit
 // http://creativecommons.org/licenses/by/2.5/
 // or send a letter to Creative Commons, 543 Howard Street, 5th Floor, San
 // Francisco, California, 94105, USA.
 //
-// All copies and derivatives of this source must contain the license statement 
+// All copies and derivatives of this source must contain the license statement
 // above and the following attribution:
 //
 // Author: Kyle Scholz      http://kylescholz.com/
@@ -28,7 +28,7 @@ if (!IE) document.captureEvents(Event.MOUSEMOVE)
 
           var words = synsets[i].getElementsByTagName("word");
           var pos = getTextFromNode( synsets[i].getAttributeNode('pos') );
-          
+
           for( var j=0; j<words.length; j++ ) {
             var thisWord = getTextFromNode( words[j].getAttributeNode('word') );
 
@@ -46,33 +46,33 @@ if (!IE) document.captureEvents(Event.MOUSEMOVE)
             if ( pos == 'r' ) { pos = 'adverb'; }
 
             domNode.innerHTML = "<img src=\"" + color[pos] + "\">";
-          
+
             var gloss = getTextFromNode( synsets[i].getAttributeNode('gloss') );
-			
+
             var context = new Object();
             context.gloss = gloss;
             context.pos = pos;
             context.obj = domNode;
-			
+
             // add a mouseoverent handler
-            domNode.onmouseover = new EventHandler( context, 
+            domNode.onmouseover = new EventHandler( context,
               function( context, e ) {
-              
+
                 if ( graph['selectedNode'] == -1 ) {
                   gloss = context.gloss;
                   gloss = gloss.replace( /\`/g, "\'" );
                   gloss = gloss.replace( /\"/g, "\'" );
                   gloss = gloss.replace( /#(.*?)#/g, "\"<i>$1\"</i>" );
-  
+
                   var definition = '<div style="border-bottom:1px dashed #444444;margin-bottom:4px;padding-bottom:4px"><b>Definition:</b></div> (' + context.pos + '): ' + gloss;
-			
-                  document.getElementById('gloss').innerHTML=definition; 
+
+                  document.getElementById('gloss').innerHTML=definition;
 
                   var target = context.obj;
                   if ( target ) {
              	    document.getElementById('gloss').style.left=parseInt(target.style.left) - 210;
                     document.getElementById('gloss').style.top=parseInt(target.style.top) - 10;
-                  }                
+                  }
                   document.getElementById('gloss').style.visibility="visible";
                   timer.stop();
                 }
@@ -80,9 +80,9 @@ if (!IE) document.captureEvents(Event.MOUSEMOVE)
             );
 
             // add a mouseoutvent handler
-            domNode.onmouseout = new EventHandler( gloss, 
+            domNode.onmouseout = new EventHandler( gloss,
               function( gloss, e ) {
-                document.getElementById('gloss').style.visibility="hidden"; 
+                document.getElementById('gloss').style.visibility="hidden";
                 timer.start();
               }
             );
@@ -218,13 +218,13 @@ UserControl.prototype = {
     }
   },
 
-  // 
+  //
   addEdge: function( node1, node2, weight ) {
     if ( !weight ) { weight=48; }
     this.graph.addEdge( node1, node2, weight );
   },
 
-  // 
+  //
   addNode: function( text, originEdge, weight ) {
 
     var node;
@@ -233,7 +233,7 @@ UserControl.prototype = {
     var domNode = this.ui.getNode( node.id );
     var context = this;
 
-    if ( originEdge ) { 
+    if ( originEdge ) {
       if ( !weight ) { weight=92 }
       this.graph.addOriginEdge( node, weight );
       this.ui.addEdge( node, graph.getOrigin(), weight );

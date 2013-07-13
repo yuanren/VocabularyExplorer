@@ -23,7 +23,7 @@ $(document).on("ready",function(){
     graphui.setOriginText("void");
 
     var
-        serverAddress = "http://10.16.23.223:3000/query_word.xml?word=test";
+        serverAddress = "http://10.16.23.223:3000/";
 
     var
         clearList = function(){
@@ -36,6 +36,9 @@ $(document).on("ready",function(){
             $('#vocabToolbar input').val("");
             clearList();
             addListItem(text);
+            $.getJSON(serverAddress+"query_word.json?word="+text, function(d){
+                console.log(d);
+            });
         };
 
 
@@ -52,4 +55,6 @@ $(document).on("ready",function(){
 
         }
     });
+
+
 });
