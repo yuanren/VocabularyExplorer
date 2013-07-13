@@ -56,7 +56,7 @@ $(document).on("ready",function(){
                             );
                             var syns = sens[j].syn.split(', ');
                             for(var k=0; k<syns.length; ++k){
-                                if(syns != text){
+                                if(syns[k] != text){
                                     var synNode = control.addNode(
                                         "<a class='synNode' href='#'>"+syns[k]+"</a>", false
                                     );
