@@ -13,33 +13,43 @@ var
 
 $(document).on("ready",function(){
 
-    // create a timer control
+    // To init the visualization
     timer.initialize( 1 );
     graphui.initialize( document.getElementById('frame'), document.getElementById('origin') );
-
-    // instantiate the graph
     graph.initialize( FRAME_WIDTH, FRAME_HEIGHT );
-
-    // set a UI for the graph to report to
     graph.setUI( graphui );
-
-    // subscribe the graph to the control timer
     timer.subscribe( graph );
-
     control.initialize( timer, graph, graphui );
+    graphui.setOriginText("void");
 
-    var word = 'void';
-    graphui.setOriginText( word );
+    var
+        serverAddress = "http://10.16.23.223:3000/query_word.xml?word=test";
 
-
+    var
+        clearList = function(){
+            $('#vocabToolbar .breadcrumbs').html("");
+        },
+        addListItem = function(item){
+            $('#vocabToolbar .breadcrumbs').append("<a href='#'>"+item+"</a>");
+        },
+        search = function(text){
+            $('#vocabToolbar input').val("");
+            clearList();
+            addListItem(text);
+        };
 
 
     $('#vocabToolbar input').on("keydown", function(e){
-        if(e.keyCode == 13){
-
-        };
+        if(e.keyCode == 13){ search($(this).val()); };
     });
-    $('#vocabToolbar button').click(function(){
+    $('#searchBtn').click(function(){
+        search($('#vocabToolbar input').val());
+    });
 
+    $('#saveBtn').click(function(){
+        var listName = window.prompt("Please input list name", "Untitiled List");
+        if(listName != null && $.trim(listName) != ""){
+
+        }
     });
 });
