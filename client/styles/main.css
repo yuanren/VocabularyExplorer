@@ -43,3 +43,38 @@ body {
 #userLists ul li a {
 	float: right;
 }
+
+.sensNode {
+	min-width: 10px; min-height: 10px;
+	background-color: #000;
+}
+
+.sensNode.noun {
+	background-color: orange;	
+}
+
+.sensNode.verb {
+	background-color: blue;
+}
+
+.sensNode.adjective {
+	background-color: red;
+}
+
+.sensNode.adverb {
+	background-color: purple;
+}
+
+.sensNode .sensMc {
+	max-width: 256px;
+	background-color: #fff;
+	display: none;
+	font-size: 14px;
+	z-index: 99;
+	border-radius: 2px;
+	padding: 2px;
+}
+
+.sensNode:hover .sensMc {
+	display: inline-block;
+}

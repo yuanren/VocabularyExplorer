@@ -20,7 +20,7 @@ $(document).on("ready",function(){
     graph.setUI( graphui );
     timer.subscribe( graph );
     control.initialize( timer, graph, graphui );
-    graphui.setOriginText("void");
+    graphui.setOriginText("vocabulary");
 
     var
         serverAddress = "http://10.16.23.223:3000/";
@@ -34,18 +34,54 @@ $(document).on("ready",function(){
         },
         search = function(text){
             $('#vocabToolbar input').val("");
-            clearList();
+            $('div[id^="node"]').remove();
+            $('div[id^="edge"]').remove();
             addListItem(text);
             $.getJSON(serverAddress+"query_word.json?word="+text, function(d){
+
+                // Parse JSON and draw on the graph
                 console.log(d);
+                var entries = d.entry_list.entry;
+                if(entries[0] == undefined){ entries = [d.entry_list.entry]; }
+
+                for(var i=0; i<entries.length; ++i){
+                    if(entries[i].id == text){
+                        var sens = entries[i].sens;
+                        if(sens[0] == undefined){ sens = [entries[i].sens]; }
+                        for(var j=0; j<sens.length; ++j){
+                            var sensNode = control.addNode(
+                                "<p class='sensNode "+entries[i].fl+"'>"+
+                                "<em class='sensMc'>"+sens[j].mc+"</em></p>",
+                                true
+                            );
+                            var syns = sens[j].syn.split(', ');
+                            for(var k=0; k<syns.length; ++k){
+                                if(syns != text){
+                                    var synNode = control.addNode(
+                                        "<a class='synNode' href='#'>"+syns[k]+"</a>", false
+                                    );
+                                    control.addEdge(sensNode, synNode);
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                graphui.setOriginText(text);
+
             });
         };
 
 
     $('#vocabToolbar input').on("keydown", function(e){
-        if(e.keyCode == 13){ search($(this).val()); };
+        if(e.keyCode == 13){
+            clearList();
+            search($(this).val());
+        };
     });
     $('#searchBtn').click(function(){
+        clearList();
         search($('#vocabToolbar input').val());
     });
 
@@ -56,5 +92,11 @@ $(document).on("ready",function(){
         }
     });
 
+
+    $('body').on("click", ".synNode", function(){
+        search($(this).html());
+    });
+
+    search("vocabulary");
 
 });
